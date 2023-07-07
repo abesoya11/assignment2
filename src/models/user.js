@@ -27,6 +27,16 @@ var userSchema = new Schema({
     type: String,
     required: true,
   },
+  preference: {
+    type: Array,
+    default: [
+      { id: 1, title: "pref1" },
+      { id: 2, title: "pref2" },
+      { id: 3, title: "pref3" },
+      { id: 4, title: "pref4" },
+      { id: 5, title: "pref5" },
+    ],
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);

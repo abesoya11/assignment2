@@ -5,7 +5,7 @@ PORT = process.env.PORT;
 const routes = require("express").Router();
 const { signup, signin } = require("./controllers/authController");
 const mongoose = require("mongoose");
-
+const getNews = require("./controllers/newsController");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -38,8 +38,8 @@ conndb();
 routes.use(bodyParser.urlencoded({ extended: false }));
 routes.use(bodyParser.json());
 app.use(routes);
-app.get("/", (req, res) => {
-  res.send("hello ");
+routes.get("/", (req, res) => {
+  res.send("hel ");
 });
 
 //app.post("/register", registerRoute);
@@ -47,6 +47,8 @@ app.get("/", (req, res) => {
 routes.post("/register", signup);
 
 routes.post("/signin", signin);
+
+routes.get("/news", getNews);
 
 app.listen(PORT, (error) => {
   if (!error) console.log("Server is Successfully Running and App is listening on port " + PORT);

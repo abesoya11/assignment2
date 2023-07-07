@@ -2,8 +2,13 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt");
 var User = require("../models/user");
 const bodyParser = require("body-parser");
+const path = require("path");
+var data = require("../data.json");
+
+const fs = require("fs");
 
 var signup = (req, res) => {
+  console.log("logging from signup");
   const user = new User({
     fullName: req.body.fullName,
     email: req.body.email,
@@ -11,7 +16,7 @@ var signup = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 8),
   });
 
-  console.log("logging user");
+  console.log("registrering user");
   user
     .save()
     .then((data) => {
