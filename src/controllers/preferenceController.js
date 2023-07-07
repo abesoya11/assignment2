@@ -8,7 +8,14 @@ var getPreference = (req, res) => {
 
   //data.preferenceArray = pref;
 
-  res.send(data);
+  res.status(200).send(data);
 };
 
-module.exports = { getPreference };
+var putPreference = (req, res) => {
+  req.user.password = undefined;
+  req.user.email = undefined;
+  req.user.preference = req.body.preferences;
+  res.send(req.user);
+};
+
+module.exports = { getPreference, putPreference };

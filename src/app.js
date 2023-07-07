@@ -4,7 +4,7 @@ require("dotenv").config();
 PORT = process.env.PORT;
 const routes = require("express").Router();
 const { signup, signin } = require("./controllers/authController");
-const { getPreference } = require("./controllers/preferenceController");
+const { getPreference, putPreference } = require("./controllers/preferenceController");
 const mongoose = require("mongoose");
 const getNews = require("./controllers/newsController");
 const bodyParser = require("body-parser");
@@ -51,6 +51,9 @@ routes.post("/register", signup);
 routes.post("/signin", signin);
 
 routes.get("/preferences", verifyToken, getPreference);
+
+//array of preferences should be passed on this rout via put method
+routes.put("/preferences", verifyToken, putPreference);
 
 routes.get("/news", getNews);
 
