@@ -33,8 +33,6 @@ var userSchema = new Schema({
       { id: 1, title: "pref1" },
       { id: 2, title: "pref2" },
       { id: 3, title: "pref3" },
-      { id: 4, title: "pref4" },
-      { id: 5, title: "pref5" },
     ],
   },
 });

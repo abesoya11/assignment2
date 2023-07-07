@@ -4,10 +4,12 @@ require("dotenv").config();
 PORT = process.env.PORT;
 const routes = require("express").Router();
 const { signup, signin } = require("./controllers/authController");
+const { getPreference } = require("./controllers/preferenceController");
 const mongoose = require("mongoose");
 const getNews = require("./controllers/newsController");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const verifyToken = require("./middleware/authJWT");
 
 const User = require("./models/user");
 var jwt = require("jsonwebtoken");
@@ -47,6 +49,8 @@ routes.get("/", (req, res) => {
 routes.post("/register", signup);
 
 routes.post("/signin", signin);
+
+routes.get("/preferences", verifyToken, getPreference);
 
 routes.get("/news", getNews);
 
