@@ -55,7 +55,7 @@ routes.get("/preferences", verifyToken, getPreference);
 //array of preferences should be passed on this rout via put method
 routes.put("/preferences", verifyToken, putPreference);
 
-routes.get("/news", getNews);
+routes.get("/news", verifyToken, getNews);
 
 app.listen(PORT, (error) => {
   if (!error) console.log("Server is Successfully Running and App is listening on port " + PORT);
