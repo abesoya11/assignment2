@@ -27,6 +27,12 @@ var userSchema = new Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user",
+    required: [true, "Please specify user role"],
+  },
   preference: {
     type: Array,
     default: ["cricket", "technology", "cars"],

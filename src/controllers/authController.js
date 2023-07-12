@@ -9,6 +9,7 @@ const fs = require("fs");
 
 var signup = (req, res) => {
   console.log("logging from signup");
+
   const user = new User({
     fullName: req.body.fullName,
     email: req.body.email,
