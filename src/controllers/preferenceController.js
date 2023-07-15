@@ -1,7 +1,9 @@
 var getPreference = (req, res) => {
   var data = {};
   if (req.user == undefined) {
-    data.message = "invalid user";
+    if (req.message == "Authorization header not found") {
+      data.message = "Authorization header not found";
+    } else data.message = "invalid user";
     res.status(400).send(data);
   }
 
