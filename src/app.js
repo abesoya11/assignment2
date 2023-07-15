@@ -16,15 +16,17 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt");
 
 //Connect to database
-async function conndb() {
-  try {
-    const conn = await mongoose.connect(process.env.CONNECTIONSTRING);
+if (process.env.NODE_ENV != "test") {
+  async function conndb() {
+    try {
+      const conn = await mongoose.connect(process.env.CONNECTIONSTRING);
 
-    console.log("db connected if value is one ->");
-  } catch (err) {}
+      console.log("db connected if value is one ->");
+    } catch (err) {}
+  }
+
+  conndb();
 }
-
-conndb();
 // try {
 // mongoose.connect(process.env.CONNECTIONSTRING, {
 //   useNewUrlParser: true,
@@ -55,9 +57,11 @@ routes.get("/preferences", verifyToken, getPreference);
 //array of preferences should be passed on this rout via put method
 routes.put("/preferences", verifyToken, putPreference);
 
-routes.get("/news", getNews);
+routes.get("/news", verifyToken, getNews);
 
 app.listen(PORT, (error) => {
   if (!error) console.log("Server is Successfully Running and App is listening on port " + PORT);
   else console.log("Error occurred, server can't start", error);
 });
+
+module.exports = app;

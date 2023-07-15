@@ -1,5 +1,10 @@
 var getPreference = (req, res) => {
   var data = {};
+  if (req.user == undefined) {
+    data.message = "invalid user";
+    res.status(400).send(data);
+  }
+
   data.fullName = req.user.fullName;
   data.preference = req.user.preference;
   //   let pref = req.user.preference.map((obj) => {
@@ -15,7 +20,7 @@ var putPreference = (req, res) => {
   req.user.password = undefined;
   req.user.email = undefined;
   req.user.preference = req.body.preferences;
-  res.send(req.user);
+  res.status(200).send(req.user);
 };
 
 module.exports = { getPreference, putPreference };
