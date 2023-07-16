@@ -9,6 +9,7 @@ const fs = require("fs");
 
 var signup = (req, res) => {
   console.log("logging from signup");
+
   const user = new User({
     fullName: req.body.fullName,
     email: req.body.email,
@@ -26,8 +27,8 @@ var signup = (req, res) => {
       });
     })
     .catch((err) => {
-      console.log("eror is --");
-      console.log(err);
+      // console.log("eror is --");
+      // console.log(err);
       res.status(500).send({
         message: err,
       });
@@ -76,7 +77,8 @@ var signin = (req, res) => {
           email: user.email,
           fullName: user.fullName,
         },
-        message: "Login successfull",
+        message: "Login successful",
+        message1: "success",
         accessToken: token,
       });
     })
