@@ -29,7 +29,11 @@ var userSchema = new Schema({
   },
   preference: {
     type: Array,
-    default: ["cricket", "technology", "cars"],
+    default: [
+      { id: 1, title: "pref1" },
+      { id: 2, title: "pref2" },
+      { id: 3, title: "pref3" },
+    ],
   },
 });
 
