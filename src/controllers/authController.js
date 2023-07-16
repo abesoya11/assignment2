@@ -78,6 +78,7 @@ var signin = (req, res) => {
           fullName: user.fullName,
         },
         message: "Login successful",
+        message1: "success",
         accessToken: token,
       });
     })
